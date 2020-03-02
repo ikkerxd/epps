@@ -11,6 +11,11 @@
 |
 */
 
+/*
+Route::get('role_test', function () {
+    return Spatie\Permission\Models\Role::with('users')->get();
+});*/
+
 Route::get('/', function () {
     return view('welcome');
 });

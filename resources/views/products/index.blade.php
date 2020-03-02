@@ -66,7 +66,7 @@
 	    @foreach ($products as $product)
 	    <tr>
 	        
-	        <td>{{ $product->nameCategory }}</td>
+	        <td>{{ $product->category->name }}</td>
 	        <td>{{ $product->nameProduct }}</td>
             <td>{{ $product->descripcion }}</td>
             <td>{{ $product->price }}</td>
@@ -90,9 +90,6 @@
 	    </tr>
 	    @endforeach
     </table>
-
-
-    
 
 
 <p class="text-center text-primary"><small>EPPS</small></p>
