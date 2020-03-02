@@ -8,6 +8,7 @@ use App\Http\Controllers\Controller;
 use Spatie\Permission\Models\Role;
 use Spatie\Permission\Models\Permission;
 use DB;
+use Hash;
 
 
 class RoleController extends Controller
@@ -46,8 +47,9 @@ class RoleController extends Controller
      */
     public function create()
     {
-        $permission = Permission::get();
+         $permission = Permission::get();
         return view('roles.create',compact('permission'));
+        
     }
 
 
