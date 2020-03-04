@@ -30,7 +30,7 @@ class CreateProductsTable extends Migration
             $table->string('marca')->nullable();
             $table->string('color');
             $table->string('ficha_tecnica');
-            $table->integer('stock');
+            $table->integer('stock')->nullable();
             $table->integer('stock_min')->default(0);
             $table->integer('state')->default(1);
             $table->timestamps();           

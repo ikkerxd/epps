@@ -6,6 +6,7 @@ use App\Category;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Http\Request;
 use App\Http\Requests\CreateProductRequest;
+use Illuminate\Support\Facades\Storage;
 
 class ProductController extends Controller
 {
@@ -40,13 +41,9 @@ class ProductController extends Controller
      */
     public function create()
     {
-        $product = Product::select(
-            'C.name as nameCategory','products.name as nameProduct','products.descripcion',
-                'products.price','products.unidad_medida','products.marca'
-        ->join('category as C','P.category_id','=','C.id')
-        ->where('products.state','=',1));
-    
-        return view('products.create',compact('product'));
+        $category=Category::pluck('name','id');
+  
+        return view('products.create',compact('category'));
     }
     /**
      * Store a newly created resource in storage.
@@ -54,11 +51,19 @@ class ProductController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(CreateProductRequest $validate, Request $request)
-    {
+    public function store(CreateProductRequest $request,Product $product)
 
-        $fields = $validate->validated();
-        Product::create($request->all());
+    {
+      
+        $fields = $request->validated();
+        $product=Product::create($fields);
+        
+        
+        if($request->file('file')){
+            $path = Storage::disk('public')->put('image',$fields->file('file'));
+            $product =fill(['file'=>asset($path)])->save();
+        }
+        
         return redirect()->route('products.index')
                         ->with('success','Product created successfully.');
     }
@@ -69,9 +74,9 @@ class ProductController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show(Product $product)
     {
-        //
+        return view('companies.show', compact('product'));
     }
 
     /**
@@ -80,7 +85,7 @@ class ProductController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit(Product $product)
     {
         //
     }
@@ -92,9 +97,18 @@ class ProductController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(CreateProductRequest $validate, Product $product)
     {
-        //
+        $fields = $validate->validated();
+        Product::update($fields->all());
+        if($fields->file('file')){
+            $path = Storage::disk('public')->put('image',$fields->file('file'));
+            $post=fill(['file'=>asset($path)])->save();
+        }
+        
+            
+        return redirect()->route('products.index')
+                        ->with('success','Product created successfully.');
     }
 
     /**

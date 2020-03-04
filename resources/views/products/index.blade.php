@@ -66,7 +66,7 @@
 	    @foreach ($products as $product)
 	    <tr>
 	        
-	        <td>{{ $product->category->name }}</td>
+	        <td>{{ $product->nameCategory }}</td>
 	        <td>{{ $product->nameProduct }}</td>
             <td>{{ $product->descripcion }}</td>
             <td>{{ $product->price }}</td>

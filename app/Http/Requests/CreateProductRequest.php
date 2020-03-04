@@ -13,6 +13,7 @@ class CreateProductRequest extends FormRequest
      */
     public function authorize()
     {
+
         return true;
     }
 
@@ -26,12 +27,26 @@ class CreateProductRequest extends FormRequest
         return [
             'name' => 'required',
             'descripcion' =>'required',
+            'color'=>'required',
             'contenido'=>'required',
             'price'=>'required',
             'unidad_medida'=>'required',
-            'marca'=>'required',
-            'stock'=>'required|min:10',
+            'category_id'=>'required'
             
         ];
     }
+    
+    public function messages(){
+        
+        return [
+            'name.required' => 'El nombre es requerido',
+            'descripcion.required' =>'El producto necesita una descripción',
+            'color.required'=>'El color es requerido',
+            'contenido.required'=>'El contenido es requerido',
+            'price.required'=>'Ingrese un precio',
+            'category_id.required'=>'ingrese una categoria',
+            'unidad_medida.required'=>'Es necesario una unidad_medida',
+        ];
+    }
+    
 }

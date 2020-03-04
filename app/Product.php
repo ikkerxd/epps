@@ -14,16 +14,12 @@ class Product extends Model
     {
         return $this->belongsTo(Category::class);
     }
+    protected $fillable = [
+        'name'
+    ];
 
-    public function hasCategory(array $category)
+    public function users()
     {
-        foreach ($category as $category)
-        {   
-            if($this->category->name == $category)
-            {
-                return true;
-            }
-        }
-        return false;
+        return $this->hasMany('App\User');
     }
 }

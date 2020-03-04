@@ -1,6 +1,5 @@
 
 @extends('layouts.app')
-@endsection
 
 @section('content')
 
@@ -15,7 +14,9 @@
             <div class="box-header with-border">
               <h3 class="box-title">Registrar Productos</h3>
             </div>
-            {!! Form::open(['route' => 'products.store','id'=>'form_Products', 'id'=>'form_Products','class' => 'form-horizontal']) !!}
+            
+
+            {!! Form::open(['route' =>'products.store','files'=>true,'id'=>'form_Products','method'=> 'POST','class' => 'form-horizontal']) !!}
                 @include('products.partials.form')
             {!! Form::close() !!}
           </div>
