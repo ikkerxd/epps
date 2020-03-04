@@ -41,6 +41,7 @@
                             <li><a class="nav-link" href="{{ route('roles.index') }}">Administra Roles</a></li>
                             <li><a class="nav-link" href="{{ route('users.index') }}">Administra User</a></li>
                             <li><a class="nav-link" href="{{ route('products.index') }}">Productos</a></li>
+                            <li><a class="nav-link" href="{{ route('category.index') }}">Categoria</a></li>
                             
                             <li class="nav-item dropdown">
                                 <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>

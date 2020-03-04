@@ -8,7 +8,7 @@
             </div>
             <div class="pull-right">
                 @can('product-create')
-                <a class="btn btn-success" href="{{ route('products.create') }}"> Create New Product</a>
+                <a class="btn btn-success" href="{{ route('category.create') }}"> Create New Product</a>
                 @endcan
             </div>
         </div>
@@ -55,41 +55,28 @@
     <table class="table table-bordered">
         <tr>
             
-            <th>Categoria</th>
-            <th>Name</th>
-            <th>Descripcion</th>
-            <th>price</th>
-            <th>Stock</th>
-            <th>Unidad Medida</th>
-            <th>Imagen</th>
-            <th>Marca</th>
+            
+            <th>Nombre Categoria</th>
+            <th>Action</th>
             
             <th width="280px">Action</th>
         </tr>
-	    @foreach ($products as $product)
+	    @foreach ($category as $category)
 	    <tr>
 	        
-	        <td>{{ $product->nameCategory }}</td>
-	        <td>{{ $product->nameProduct }}</td>
-            <td>{{ $product->descripcion }}</td>
-            <td>{{ $product->price }}</td>
-            <td>{{$product->stock}}</td>
-            <td>{{ $product->unidad_medida }}</td>
-            <td>
-            <img  style= "width:200px;  background-color: #EFEFEF;" class="rounded-circle" src="images/{{$product->image}}" alt="">
-            </td>
-            <td>{{ $product->marca }}</td>
+	        <td>{{ $category->name }}</td>
+            
 	        <td>
-                <form action="{{ route('products.destroy',$product->id) }}" method="POST">
-                    <a class="btn btn-info" href="{{ route('products.show',$product->id) }}">Show</a>
-                    @can('product-edit')
-                    <a class="btn btn-primary" href="{{ route('products.edit',$product->id) }}">Edit</a>
+                <form action="{{ route('category.destroy',$category->id) }}" method="POST">
+                    <a class="btn btn-info" href="{{ route('category.show',$category->id) }}">Show</a>
+                    @can('category-edit')
+                    <a class="btn btn-primary" href="{{ route('category.edit',$category->id) }}">Edit</a>
                     @endcan
 
 
                     @csrf
                     @method('DELETE')
-                    @can('product-delete')
+                    @can('category-delete')
                     <button type="submit" class="btn btn-danger">Delete</button>
                     @endcan
                 </form>

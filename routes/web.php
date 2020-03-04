@@ -30,9 +30,11 @@ Route::group(['middleware' => ['auth']], function() {
     Route::get('products/create','ProductController@create')->name('products.create');
     Route::post('products','ProductController@store')->name('products.store');
     Route::get('products/{product}','ProductController@show')->name('products.show');
-    Route::post('products/{product}','ProductController@update')->name('products.update');
+    Route::put('products/{product}','ProductController@update')->name('products.update');
     Route::get('products/{product}/edit','ProductController@edit')->name('products.edit');
     Route::delete('products/{product}','ProductController@destroy')->name('products.destroy');
+    //Route::resource('products','ProductController');
+    Route::resource('category','CategoryController');
     Route::resource('roles','RoleController');
     Route::resource('users','UserController');
     

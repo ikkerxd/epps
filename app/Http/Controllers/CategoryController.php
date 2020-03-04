@@ -3,17 +3,25 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Category;
 
 class CategoryController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
+    function __construct()
+    {
+         $this->middleware('permission:category-list');
+         $this->middleware('permission:category-create', ['only' => ['create','store']]);
+         $this->middleware('permission:category-edit', ['only' => ['edit','update']]);
+         $this->middleware('permission:category-delete', ['only' => ['destroy']]);
+    }
+
     public function index()
     {
-        
+        $category = Category::select('category.name')
+        ->where('state','=',1)
+        ->get();
+
+        return view('category.index',compact('category'));
     }
 
     /**
@@ -23,7 +31,7 @@ class CategoryController extends Controller
      */
     public function create()
     {
-        //
+        return view('category.create');
     }
 
     /**
@@ -34,7 +42,16 @@ class CategoryController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $fields = $this->validate($request ,[
+            'name' => 'required',
+        ],
+        [
+            'name.required' => 'Ingrese nombre de Categoria',
+        ]);
+
+        Category::create($request->all());
+
+        return redirect()->route('category.index')->with('success','La categoria: '. $request->name. ' fue agregada con Exito');
     }
 
     /**
@@ -43,7 +60,7 @@ class CategoryController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show(Category $category)
     {
         //
     }
@@ -54,9 +71,9 @@ class CategoryController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit(Category $category)
     {
-        //
+        return view('category.edit',compact('category'));
     }
 
     /**
@@ -66,9 +83,17 @@ class CategoryController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request,Category $category)
     {
-        //
+        $fields = $this->validate($request ,[
+            'name' => 'required',
+        ],
+        [
+            'name.required' => 'Ingrese nombre de Categoria',
+        ]);
+
+        $category->update($request->all());
+        return redirect()->route('category.index')->with('success','La categoria: '. $request->name. ' fue actualizada con Exito');
     }
 
     /**

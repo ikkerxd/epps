@@ -38,6 +38,20 @@ class PermissionTableSeeder extends Seeder
         DB::table('permissions')->insert([
             'name'=>'product-delete',
         ]);
+        //permisos para categoria
+        /* permisos para roles */
+        DB::table('permissions')->insert([
+            'name'=>'category-list',
+        ]);
+        DB::table('permissions')->insert([
+            'name'=>'category-create',
+        ]);
+        DB::table('permissions')->insert([
+            'name'=>'category-edit',
+        ]);
+        DB::table('permissions')->insert([
+            'name'=>'category-delete',
+        ]);
         //dando un rool root a un usuario con id:1
         DB::table('model_has_roles')->insert([
 
@@ -78,7 +92,23 @@ class PermissionTableSeeder extends Seeder
         DB::table('role_has_permissions')->insert([
             'permission_id'=>'8',
             'role_id'=>'1'
-        ]);  
+        ]);
+        DB::table('role_has_permissions')->insert([
+            'permission_id'=>'9',
+            'role_id'=>'1'
+        ]);
+        DB::table('role_has_permissions')->insert([
+            'permission_id'=>'10',
+            'role_id'=>'1'
+        ]);
+        DB::table('role_has_permissions')->insert([
+            'permission_id'=>'11',
+            'role_id'=>'1'
+        ]);
+        DB::table('role_has_permissions')->insert([
+            'permission_id'=>'12',
+            'role_id'=>'1'
+        ]);   
         //------------------------------------------
 
     }
