@@ -78,8 +78,13 @@ class ProductController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function show(Product $product)
+    
     {
-        return view('products.show', compact('product'));
+        
+        $category=Category::pluck('name','id')
+        ->where($product->category_id,'=','id');
+
+        return view('products.show', compact('product','category'));
     }
 
     /**
