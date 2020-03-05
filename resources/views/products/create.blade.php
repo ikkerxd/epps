@@ -17,7 +17,7 @@
             
 
             {!! Form::open(['route' =>'products.store','files'=>true,'id'=>'form_Products','method'=> 'POST','class' => 'form-horizontal']) !!}
-                @include('products.partials.form')
+                @include('products.partials.form',['Modo'=>'crear'])
             {!! Form::close() !!}
           </div>
         </div>

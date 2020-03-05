@@ -85,10 +85,11 @@
 <div class="col-xs-12 col-sm-6">
   <div class="form-group">
   
-  
   <label for="image">Imagen</label>
-  <input type="file" id="image"  name="image"class="form-control">
+  <input type="file" id="image"  name="image"class="form-control" value="{{isset($product->image)?$product->image:''}}">
+  @if(isset($product->image))
   <img  style= "width:200px;  background-color: #EFEFEF;" class="rounded-circle" src="{{asset('images').'/'.$product->image}}" alt="">
+  @endif
   </div>
   </div>
 <div class="col-xs-12 col-sm-6">
@@ -102,7 +103,7 @@
 </div>
 <div class="form-group">
 <div class="text-center">
-<button type="submit" class="btn btn-primary">Guardar</button>
+<button type="submit" class="btn btn-primary">{{ $Modo=='crear'? 'Agregar': 'Modificar'}}</button>
 </div>
 </div>
 </div>

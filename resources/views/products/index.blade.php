@@ -14,37 +14,7 @@
         </div>
     </div>
 
-    <body>
-          @if(Session::has('Mensaje'))
-
-          <div class="alert alert-success" role="alert">
-
-          <strong font size=7 >Aviso: </strong> {{session('flash')}}
-          <button type="button" class="close" data-dismiss="alert" alert-label
-           <span aria-hidden="true">&times;</span>
-          </button>
-       
-       
-          {{ Session::get('Mensaje')}}
-          </div>
-
-        @endif
-
-        @if(Session::has('Mensaje2'))
-
-            <div class="alert alert-danger" role="alert">
-
-            <strong font size=7 >Aviso: </strong> {{session('flash')}}
-            <button type="button" class="close" data-dismiss="alert" alert-label
-            <span aria-hidden="true">&times;</span>
-            </button>
-
-
-            {{ Session::get('Mensaje2')}}
-          </div>
-          @endif
-
-    </body>
+    
         @if ($message = Session::get('success'))
             <div class="alert alert-success">
                 <p>{{ $message }}</p>
@@ -54,7 +24,7 @@
 
     <table class="table table-bordered">
         <tr>
-            
+            <th>#</th>
             <th>Categoria</th>
             <th>Name</th>
             <th>Descripcion</th>
@@ -68,7 +38,7 @@
         </tr>
 	    @foreach ($products as $product)
 	    <tr>
-	        
+	        <td>{{$loop->iteration}}</td>
 	        <td>{{ $product->nameCategory }}</td>
 	        <td>{{ $product->nameProduct }}</td>
             <td>{{ $product->descripcion }}</td>
@@ -76,7 +46,7 @@
             <td>{{$product->stock}}</td>
             <td>{{ $product->unidad_medida }}</td>
             <td>
-            <img  style= "width:200px;  background-color: #EFEFEF;" class="rounded-circle" src="images/{{$product->image}}" alt="">
+            <img  style= "width:200px;  background-color: #EFEFEF;" class="rounded-circle" src="{{asset('images').'/'.$product->image}}" alt="">
             </td>
             <td>{{ $product->marca }}</td>
 	        <td>

@@ -17,9 +17,10 @@ class CategoryController extends Controller
 
     public function index()
     {
-        $category = Category::select('category.name')
+        $category = Category::select('category.id as id','category.name','category.state')
         ->where('state','=',1)
         ->get();
+        
 
         return view('category.index',compact('category'));
     }
@@ -62,7 +63,7 @@ class CategoryController extends Controller
      */
     public function show(Category $category)
     {
-        //
+        return view('products.show',compact('category'));
     }
 
     /**

@@ -27,7 +27,7 @@ class ProductController extends Controller
         ->join('category as C','products.category_id','=','C.id')
         ->where('products.state','=',1)
         ->get();
-
+        
         return view('products.index',compact('products'));
         
     }
@@ -57,6 +57,7 @@ class ProductController extends Controller
         if($request->hasFile('image')){
             $file=$request->file('image');
             $name = time().$file->getClientOriginalName();
+            
 
             $file -> move(public_path().'/images/',$name);
             
@@ -81,9 +82,14 @@ class ProductController extends Controller
     
     {
         
-        $category=Category::pluck('name','id')
-        ->where($product->category_id,'=','id');
+       /* $category = DB::table('category')
+        ->where('id',$product->category_id)
+        ->first();*/
 
+        $category=Category::select('category.name','category.id')
+        ->where('category.id',$product->category_id)->first();
+        
+        
         return view('products.show', compact('product','category'));
     }
 
@@ -96,7 +102,8 @@ class ProductController extends Controller
     public function edit(Product $product)
     {
         $category=Category::pluck('name','id');
-  
+        
+        
         return view('products.edit',compact('product','category'));
     }
 
@@ -111,10 +118,17 @@ class ProductController extends Controller
     {
         
         $fields = $request->validated();
+       
+        $file_path = public_path().'/images/'.$product->image;
+            \File::delete($file_path);
         
         if($request->hasFile('image')){
             $file=$request->file('image');
             $name = time().$file->getClientOriginalName();
+
+            
+            
+            
 
             $file -> move(public_path().'/images/',$name);
             
@@ -135,8 +149,12 @@ class ProductController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(Product $product)
     {
-        
+        $file_path = public_path().'/images/'.$product->image;
+        \File::delete($file_path);
+        $product->delete();
+        return redirect()->route('products.index')
+                        ->with('success','Producto '.$product->name .' Eliminado Correctamente.');
     }
 }

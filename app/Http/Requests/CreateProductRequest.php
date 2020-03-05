@@ -35,6 +35,7 @@ class CreateProductRequest extends FormRequest
             'ficha_tecnica'=>'required',
             'price'=>'required',
             'image'=>'present',
+            //'image'=>'file|image|max:5000',
         ];
     }
     

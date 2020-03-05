@@ -4,47 +4,15 @@
     <div class="row">
         <div class="col-lg-12 margin-tb">
             <div class="pull-left">
-                <h2>Products</h2>
+                <h2>Categorias</h2>
             </div>
             <div class="pull-right">
-                @can('product-create')
-                <a class="btn btn-success" href="{{ route('category.create') }}"> Create New Product</a>
+                @can('category-create')
+                <a class="btn btn-success" href="{{ route('category.create') }}"> Create New Category</a>
                 @endcan
             </div>
         </div>
     </div>
-
-    <body>
-          @if(Session::has('Mensaje'))
-
-          <div class="alert alert-success" role="alert">
-
-          <strong font size=7 >Aviso: </strong> {{session('flash')}}
-          <button type="button" class="close" data-dismiss="alert" alert-label
-           <span aria-hidden="true">&times;</span>
-          </button>
-       
-       
-          {{ Session::get('Mensaje')}}
-          </div>
-
-        @endif
-
-        @if(Session::has('Mensaje2'))
-
-            <div class="alert alert-danger" role="alert">
-
-            <strong font size=7 >Aviso: </strong> {{session('flash')}}
-            <button type="button" class="close" data-dismiss="alert" alert-label
-            <span aria-hidden="true">&times;</span>
-            </button>
-
-
-            {{ Session::get('Mensaje2')}}
-          </div>
-          @endif
-
-    </body>
         @if ($message = Session::get('success'))
             <div class="alert alert-success">
                 <p>{{ $message }}</p>
@@ -55,17 +23,21 @@
     <table class="table table-bordered">
         <tr>
             
-            
+            <th>#</th>
             <th>Nombre Categoria</th>
-            <th>Action</th>
+            <th>Estado</th>
             
             <th width="280px">Action</th>
         </tr>
 	    @foreach ($category as $category)
 	    <tr>
-	        
+            <td>{{ $loop->iteration }}</td>
 	        <td>{{ $category->name }}</td>
-            
+            @if($category->state = 1)
+                <td><span class="label bg-green">activo</span></td>
+            @else
+                <td><span class="label bg-yellow">Desactivado</span></td>
+            @endif
 	        <td>
                 <form action="{{ route('category.destroy',$category->id) }}" method="POST">
                     <a class="btn btn-info" href="{{ route('category.show',$category->id) }}">Show</a>

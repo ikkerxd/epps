@@ -9,13 +9,13 @@
 
 <section class="content">
   <div class="row">
-    <div class="col-md-8">
+    <div class="col-md-12 text-center">
       <div class="box box-info">
         <div class="box-header with-border">
-          <h3 class="box-title">Editar Producto</h3>
+          <h3 class="box-title">Editar Categoria</h3>
         </div>
-        {!! Form::model($product, ['route' => ['products.update', $product->id],'method'=>'PUT','files'=>true ,'id'=>'form_Producto' ,'class' => 'form-horizontal']) !!}
-        @include('products.partials.form')
+        {!! Form::model($category, ['route' => ['category.update', $category->id],'method'=>'PUT','files'=>true ,'id'=>'form_Category' ,'class' => 'form-horizontal']) !!}
+        @include('category.partials.form')
         {!! Form::close() !!}
         
       </div>
