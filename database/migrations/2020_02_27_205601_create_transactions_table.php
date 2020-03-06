@@ -15,7 +15,37 @@ class CreateTransactionsTable extends Migration
     {
         Schema::create('transactions', function (Blueprint $table) {
             $table->bigIncrements('id');
+            $table->unsignedBigInteger('user_id');
+            $table->foreign('user_id')
+                ->references('id')->on('users')
+                ->onDelete('cascade');
+            $table->string('type')->nullable();
+            $table->bigInteger('nro_transaction');
+            $table->bigInteger('nro_guide');
+            $table->date('date');
+            //cantidad comprada o vendida
+            $table->bigInteger('total');
+            $table->decimal('igv');
+            $table->string('process')->nullable();
+            $table->integer('state')->default(1);
             $table->timestamps();
+        });
+        //detalle de movimientos y productos
+        Schema::create('details', function (Blueprint $table) {
+            $table->bigIncrements('id');
+            $table->unsignedBigInteger('transaction_id');
+            $table->foreign('transaction_id')
+                ->references('id')->on('transactions')
+                ->onDelete('cascade');
+            $table->unsignedBigInteger('product_id');
+            $table->foreign('product_id')
+                ->references('id')->on('products')
+                ->onDelete('cascade');
+            $table->bigInteger('count');
+            $table->decimal('price_unit');
+            $table->integer('state')->default(1);
+            $table->timestamps();
+            //
         });
     }
 
@@ -26,6 +56,8 @@ class CreateTransactionsTable extends Migration
      */
     public function down()
     {
+        
+        Schema::dropIfExists('details');
         Schema::dropIfExists('transactions');
     }
 }

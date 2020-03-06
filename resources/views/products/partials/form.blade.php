@@ -1,7 +1,5 @@
 
 
-
-
 <div class="box-body">
 
 @if ($errors->any())
@@ -88,7 +86,10 @@
   <label for="image">Imagen</label>
   <input type="file" id="image"  name="image"class="form-control" value="{{isset($product->image)?$product->image:''}}">
   @if(isset($product->image))
+  
   <img  style= "width:200px;  background-color: #EFEFEF;" class="rounded-circle" src="{{asset('images').'/'.$product->image}}" alt="">
+  {!! Form::hidden('image', null, ['class' => 'form-control','placeholder' => '']) !!}
+
   @endif
   </div>
   </div>

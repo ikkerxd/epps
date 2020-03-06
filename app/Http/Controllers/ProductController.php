@@ -56,7 +56,7 @@ class ProductController extends Controller
         
         if($request->hasFile('image')){
             $file=$request->file('image');
-            $name = time().$file->getClientOriginalName();
+            $name = $file->getClientOriginalName();
             
 
             $file -> move(public_path().'/images/',$name);
@@ -117,24 +117,28 @@ class ProductController extends Controller
     public function update(CreateProductRequest $request, Product $product)
     {
         
+        
         $fields = $request->validated();
-       
+        
         $file_path = public_path().'/images/'.$product->image;
-            \File::delete($file_path);
+        
+            
         
         if($request->hasFile('image')){
             $file=$request->file('image');
-            $name = time().$file->getClientOriginalName();
+            $name = $file->getClientOriginalName();
 
-            
-            
-            
-
+            \File::delete($file_path);
+        
             $file -> move(public_path().'/images/',$name);
             
             $fields['image'] = $name;
             
             
+        }else{
+            
+            
+            $fields['image'] = $product->image;
         }
         
 

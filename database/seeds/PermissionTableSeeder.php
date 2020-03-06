@@ -39,7 +39,6 @@ class PermissionTableSeeder extends Seeder
             'name'=>'product-delete',
         ]);
         //permisos para categoria
-        /* permisos para roles */
         DB::table('permissions')->insert([
             'name'=>'category-list',
         ]);
@@ -51,6 +50,19 @@ class PermissionTableSeeder extends Seeder
         ]);
         DB::table('permissions')->insert([
             'name'=>'category-delete',
+        ]);
+        //permisos para transacciones
+        DB::table('permissions')->insert([
+            'name'=>'transaction-list',
+        ]);
+        DB::table('permissions')->insert([
+            'name'=>'transaction-create',
+        ]);
+        DB::table('permissions')->insert([
+            'name'=>'transaction-edit',
+        ]);
+        DB::table('permissions')->insert([
+            'name'=>'transaction-delete',
         ]);
         //dando un rool root a un usuario con id:1
         DB::table('model_has_roles')->insert([
@@ -76,7 +88,7 @@ class PermissionTableSeeder extends Seeder
             'permission_id'=>'4',
             'role_id'=>'1'
         ]);
-        //--
+        //--------------------------------------
         DB::table('role_has_permissions')->insert([
             'permission_id'=>'5',
             'role_id'=>'1'
@@ -93,6 +105,7 @@ class PermissionTableSeeder extends Seeder
             'permission_id'=>'8',
             'role_id'=>'1'
         ]);
+        //--------------------------------------
         DB::table('role_has_permissions')->insert([
             'permission_id'=>'9',
             'role_id'=>'1'
@@ -110,6 +123,22 @@ class PermissionTableSeeder extends Seeder
             'role_id'=>'1'
         ]);   
         //------------------------------------------
+        DB::table('role_has_permissions')->insert([
+            'permission_id'=>'13',
+            'role_id'=>'1'
+        ]);
+        DB::table('role_has_permissions')->insert([
+            'permission_id'=>'14',
+            'role_id'=>'1'
+        ]);
+        DB::table('role_has_permissions')->insert([
+            'permission_id'=>'15',
+            'role_id'=>'1'
+        ]);
+        DB::table('role_has_permissions')->insert([
+            'permission_id'=>'16',
+            'role_id'=>'1'
+        ]);  
 
     }
 }

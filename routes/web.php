@@ -35,6 +35,7 @@ Route::group(['middleware' => ['auth']], function() {
     Route::delete('products/{product}','ProductController@destroy')->name('products.destroy');
     //Route::resource('products','ProductController');
     Route::resource('category','CategoryController');
+    Route::resource('transactions','TransactionController');
     Route::resource('roles','RoleController');
     Route::resource('users','UserController');
     

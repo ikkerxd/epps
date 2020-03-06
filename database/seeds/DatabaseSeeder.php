@@ -15,8 +15,10 @@ class DatabaseSeeder extends Seeder
             'users',
             'category',
             'products',
-            'type_products',
-            'movimientos'
+            'transactions',
+            'not_availables',
+            'details',
+            
         
         ]);
 

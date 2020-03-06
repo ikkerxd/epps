@@ -13,8 +13,16 @@ class CreateNotAvailablesTable extends Migration
      */
     public function up()
     {
+        //creacion de la tabla no disponible
         Schema::create('not_availables', function (Blueprint $table) {
             $table->bigIncrements('id');
+            $table->unsignedBigInteger('transaction_id');
+            $table->foreign('transaction_id')
+                    ->references('id')->on('transactions')
+                    ->onDelete('cascade');
+            $table->string('name');
+            $table->bigInteger('cantidad')->default(0);
+            $table->integer('state')->default(1);
             $table->timestamps();
         });
     }
