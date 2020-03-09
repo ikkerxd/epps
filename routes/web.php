@@ -38,6 +38,7 @@ Route::group(['middleware' => ['auth']], function() {
     Route::resource('transactions','TransactionController');
     Route::resource('roles','RoleController');
     Route::resource('users','UserController');
+    Route::resource('not_availables','Not_AvailableController');
     
 });
 

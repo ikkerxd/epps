@@ -1,6 +1,7 @@
 
 @extends('layouts.app')
 
+
 @section('content')
 
     <section class="content-header">
@@ -23,4 +24,25 @@
         </div>
       </div>
     </section>
+@endsection
+@section('js')
+
+    <script>
+    
+        $(document).ready(function () {
+            $('.datepicker').datetimepicker({
+                locale: 'es',
+                format: 'L'
+            });
+
+            $('.selection-input').select2({
+                theme: "bootstrap"
+            });
+            $('#form_Transaccion').submit(function()
+            {
+            $('.btn_submit_transaction').prop('disabled',true);
+            $('.btn_submit_transaction').html('<p><i class="fa fa-spinner fa-spin fa-2x fa-fw"></i><span class="sr-only"></span> Registrando...</p>');
+            });
+        });
+    </script>
 @endsection

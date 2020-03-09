@@ -21,7 +21,7 @@ class CreateNotAvailablesTable extends Migration
                     ->references('id')->on('transactions')
                     ->onDelete('cascade');
             $table->string('name');
-            $table->bigInteger('cantidad')->default(0);
+            $table->bigInteger('quantity')->default(0);
             $table->integer('state')->default(1);
             $table->timestamps();
         });

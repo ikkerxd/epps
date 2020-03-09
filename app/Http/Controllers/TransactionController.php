@@ -42,10 +42,9 @@ class TransactionController extends Controller
      */
     public function create()
     {
-        $user =Auth::user();
-         $transaction=Transaction::pluck('name','id');
-  
-        return view('transactions.create',compact('transaction','user'));
+        $user =Auth::user()->pluck('name','id');
+         
+        return view('transactions.create',compact('user'));
         
     }
 
@@ -55,17 +54,17 @@ class TransactionController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(CreateTransactionRequest $request)
+    public function store(CreateTransactionRequest $request, Transaction $transaction)
     {
         $user =Auth::user();
+        
+       
         $fields = $request->validated();
-        
         $fields['user_id']=$user->id;
-
-        $transaction=Transaction::create($fields);
-        
         
 
+        $transaction::create($fields);
+        
         return redirect()->route('transactions.index')
                         ->with('success','Transaccion con el numero'. $transaction->nro_transaction .' en la fecha '. $transaction->date .' Agregada Correctamente.');  
     }
@@ -106,10 +105,16 @@ class TransactionController extends Controller
      */
     public function update(CreateTransactionRequest $request,Transaction $transaction)
     {
+        
         $fields = $request->validated();
-
-        $product::where('process','=','request')->whereor('process','=','pending')->update($fields);
-        return redirect()->route('products.index')
+       // ->whereor('process','=','pending')
+       
+        $transaction::where('process','=','request')->where('id','=',$transaction->id)->update($fields);
+        if($transaction->process <>'request' and $transaction->process <>'pending' ){
+            return redirect()->route('transactions.index')
+            ->with('danger','Transaccion con el numero'. $transaction->nro_transaction . ' no  ah sido actualizada. '.' El proceso ya esta aprovado');
+        }
+        return redirect()->route('transactions.index')
                         ->with('success','Transaccion con el numero'. $transaction->nro_transaction .' en la fecha '. $transaction->date .' actualizado Correctamente.');
     }
 
@@ -123,6 +128,6 @@ class TransactionController extends Controller
     {
         Transaction::where('id','=',$transaction->id)->update(['state'=> '0']);
 
-        return redirect()->back()->with('success','La transaccion con el numero '.$transaction->nro_transaction .' en la fecha '. $transaction->date .' fue realizada con exito');
+        return redirect()->back()->with('danger','La transaccion con el numero '.$transaction->nro_transaction .' en la fecha '. $transaction->date .' fue Eliminada con exito');
     }
 }

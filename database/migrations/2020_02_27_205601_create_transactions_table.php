@@ -25,8 +25,8 @@ class CreateTransactionsTable extends Migration
             $table->date('date');
             //cantidad comprada o vendida
             $table->bigInteger('total');
-            $table->decimal('igv');
-            $table->string('process')->nullable();
+            $table->decimal('igv')->nullable();
+            $table->string('process')->default('request');
             $table->integer('state')->default(1);
             $table->timestamps();
         });

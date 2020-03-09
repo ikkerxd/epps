@@ -30,6 +30,12 @@
         </div>
         <div class="col-xs-12 col-sm-12 col-md-12">
             <div class="form-group">
+                <strong>Usuario:</strong>
+                {{ $user->name }}
+            </div>
+        </div>
+        <div class="col-xs-12 col-sm-12 col-md-12">
+            <div class="form-group">
                 <strong>Nro Guia:</strong>
                 {{ $transaction->nro_guide }}
             </div>
@@ -53,18 +59,6 @@
             </div>
         </div>
         
-        <div class="col-xs-12 col-sm-12 col-md-12">
-            <div class="form-group">
-                <strong>Color:</strong>
-                {{ $product->color }}
-            </div>
-        </div>
-        <div class="col-xs-12 col-sm-12 col-md-12">
-            <div class="form-group">
-                <strong>Igv:</strong>
-                {{ $product->igv }}
-            </div>
-        </div>
         
        
     

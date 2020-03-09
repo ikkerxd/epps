@@ -117,7 +117,7 @@ class ProductController extends Controller
     public function update(CreateProductRequest $request, Product $product)
     {
         
-        
+       
         $fields = $request->validated();
         
         $file_path = public_path().'/images/'.$product->image;

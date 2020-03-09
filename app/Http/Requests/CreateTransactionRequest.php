@@ -24,19 +24,20 @@ class CreateTransactionRequest extends FormRequest
     public function rules()
     {
         return [
-            'type' => 'required',
+            
             'nro_transaction' => 'required|numeric',
             'nro_guide' => 'required|numeric',
             'date' => 'required|date',
             'total' => 'required',
-            'process' =>'required',
+            'process' =>'nullable'    
+            
             
         ];
     }
     public function messages(){
 
         return[
-            'type.required' => 'El tipo es requerido',
+            
             'nro_transaction.required' =>'El nro de transaccion es requerido',
             'nro_transaction.numeric' =>'El nro de transaccion debe ser numerico',
             'nro_guide.required' =>'El nro de guia es requerido',
@@ -44,7 +45,7 @@ class CreateTransactionRequest extends FormRequest
             'date.required' =>'Es necesario la fecha',
             'date.date'=>'Introdusca el formato de fecha',
             'total.required'=>'El total es requerido',
-            'process.required'=>'Proceso requerido',
+            
             
         ];
     }

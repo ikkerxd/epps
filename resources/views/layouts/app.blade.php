@@ -1,16 +1,20 @@
 <html lang="{{ app()->getLocale() }}">
 <head>
+    
+            
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <!-- CSRF Token -->
     <meta name="csrf-token" content="{{ csrf_token() }}">
-    <title>{{ config('app.name', 'Laravel 5.8 User Roles and Permissions Tutorial') }}</title>
+    <title>{{ config('app.name', 'EPPS') }}</title>
     <!-- Scripts -->
     <script src="{{ asset('js/app.js') }}" defer></script>
     <!-- Fonts -->
     <link rel="dns-prefetch" href="https://fonts.gstatic.com">
     <link href="https://fonts.googleapis.com/css?family=Raleway:300,400,600" rel="stylesheet" type="text/css">
+    
+                
     <!-- Styles -->
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
 </head>
@@ -19,7 +23,7 @@
         <nav class="navbar navbar-expand-md navbar-light navbar-laravel">
             <div class="container">
                 <a class="navbar-brand" href="{{ url('/') }}">
-                    Laravel 5.8 User Roles and Permissions - ItSolutionStuff.com
+                    EPPS
                 </a>
                 <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
@@ -43,6 +47,7 @@
                             <li><a class="nav-link" href="{{ route('products.index') }}">Productos</a></li>
                             <li><a class="nav-link" href="{{ route('category.index') }}">Categoria</a></li>
                             <li><a class="nav-link" href="{{ route('transactions.index') }}">Transacciones</a></li>
+                            <li><a class="nav-link" href="{{ route('not_availables.index') }}">Especificacion</a></li>
                             
                             <li class="nav-item dropdown">
                                 <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
@@ -69,10 +74,22 @@
             </div>
         </nav>
 
+        <!-- Scripts js-->
+        <script src="{{ asset('js/moment.js') }}"></script>
+        <script src="{{ asset('js/moment-with-locales.js') }}"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-datetimepicker/2.5.20/jquery.datetimepicker.full.js"></script>
+        <script src="{{ asset('js/select2.full.min.js') }}"></script>
+        
 
         <main class="py-4">
             <div class="container">
+
+
             @yield('content')
+            @yield('js')
+            
+            
+            
             </div>
         </main>
     </div>

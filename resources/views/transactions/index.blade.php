@@ -8,7 +8,7 @@
             </div>
             <div class="pull-right">
                 @can('transaction-create')
-                <a class="btn btn-success" href="{{ route('products.create') }}"> Create New Product</a>
+                <a class="btn btn-success" href="{{ route('transactions.create') }}"> Create New Transaccion</a>
                 @endcan
             </div>
         </div>
@@ -20,6 +20,11 @@
                 <p>{{ $message }}</p>
             </div>
         @endif
+        @if ($message = Session::get('danger'))
+        <div class="alert alert-danger" role="alert">
+        <p>{{ $message }}</p>
+        </div>
+        @endif
 
 
     <table class="table table-bordered">
@@ -29,7 +34,7 @@
             <th>Nro Guia</th>
             <th>Fecha</th>
             <th>Total</th>
-            <th>Proceso Transaccion</th>
+            <th>Usuario</th>
             
             
             <th width="280px">Action</th>
@@ -41,7 +46,7 @@
 	        <td>{{ $transaction->nro_guide }}</td>
             <td>{{ $transaction->date }}</td>
             <td>{{ $transaction->total }}</td>
-            <td>{{$transaction->process}}</td>
+            <td>{{$user->name}}</td>
             
 	        <td>
                 <form action="{{ route('transactions.destroy',$transaction->id) }}" method="POST">
