@@ -32,13 +32,15 @@ Route::group(['middleware' => ['auth']], function() {
     Route::get('products/{product}','ProductController@show')->name('products.show');
     Route::put('products/{product}','ProductController@update')->name('products.update');
     Route::get('products/{product}/edit','ProductController@edit')->name('products.edit');
+    Route::get('products/buscar','ProductController@ebuscar')->name('products.buscar');
     Route::delete('products/{product}','ProductController@destroy')->name('products.destroy');
     //Route::resource('products','ProductController');
+    Route::resource('details','DetailsController');
     Route::resource('category','CategoryController');
     Route::resource('transactions','TransactionController');
     Route::resource('roles','RoleController');
     Route::resource('users','UserController');
-    Route::resource('not_availables','Not_AvailableController');
+    Route::resource('notavailables','NotAvailableController');
     
 });
 

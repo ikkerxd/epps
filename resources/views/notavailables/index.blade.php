@@ -8,7 +8,7 @@
             </div>
             <div class="pull-right">
                 @can('not_available-create')
-                <a class="btn btn-success" href="{{ route('not_availables.create') }}"> Create New Especificacion</a>
+                <a class="btn btn-success" href="{{ route('notavailables.create') }}"> Create New Especificacion</a>
                 @endcan
             </div>
         </div>
@@ -36,7 +36,7 @@
             
             <th width="280px">Action</th>
         </tr>
-	    @foreach ($not_available as $notavailable)
+	    @foreach ($notavailable as $notavailable)
 	    <tr>
 	        <td>{{$loop->iteration}}</td>
 	        <td>{{ $notavailable->nro_transaction }}</td>
@@ -45,10 +45,10 @@
             
            
 	        <td>
-                <form action="{{ route('not_availables.destroy',$not_available->id) }}" method="POST">
-                    <a class="btn btn-info" href="{{ route('not_availables.show',$not_available->id) }}">Show</a>
+                <form action="{{ route('notavailables.destroy',$notavailable->id) }}" method="POST">
+                    <a class="btn btn-info" href="{{ route('notavailables.show',$notavailable->id) }}">Show</a>
                     @can('not_available-edit')
-                    <a class="btn btn-primary" href="{{ route('not_availables.edit',$not_available->id) }}">Edit</a>
+                    <a class="btn btn-primary" href="{{ route('notavailables.edit',$notavailable->id) }}">Edit</a>
                     @endcan
 
 

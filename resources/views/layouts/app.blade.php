@@ -9,12 +9,31 @@
     <meta name="csrf-token" content="{{ csrf_token() }}">
     <title>{{ config('app.name', 'EPPS') }}</title>
     <!-- Scripts -->
-    <script src="{{ asset('js/app.js') }}" defer></script>
+    
     <!-- Fonts -->
     <link rel="dns-prefetch" href="https://fonts.gstatic.com">
     <link href="https://fonts.googleapis.com/css?family=Raleway:300,400,600" rel="stylesheet" type="text/css">
+
+  
+
+    <!-- JS -->
+    <script src="{{ asset('js/jquery.min.js') }}"></script>
+    <script src="{{ asset('js/jquery.slimscroll.min.js') }}"></script>
+    <script src="{{ asset('js/bootstrap.min.js') }}"></script>
+    <script src="{{ asset('js/moment.js') }}"></script>
+    <script src="{{ asset('js/moment-with-locales.js') }}"></script>
+    <script src="{{ asset('js/bootstrap-datetimepicker.min.js') }}"></script>
+    <script src="{{ asset('js/select2.full.min.js') }}"></script>
     
-                
+      <!-- CSS -->
+      <link rel="stylesheet" href="{{ asset('css/bootstrap-datepicker.css') }}">
+      <link rel="stylesheet" href="{{ asset('css/bootstrap-datepicker.min.css') }}">
+      <link rel="stylesheet" href="{{ asset('css/bootstrap-datepicker.standalone.css') }}">
+      <link rel="stylesheet" href="{{ asset('css/bootstrap-datepicker.standalone.min.css') }}">
+      <link rel="stylesheet" href="{{ asset('css/bootstrap-datepicker3.css') }}">
+      <link rel="stylesheet" href="{{ asset('css/bootstrap-datepicker3.standalone.css') }}">
+      <link rel="stylesheet" href="{{ asset('css/bootstrap-datepicker3.standalone.min.css') }}">
+
     <!-- Styles -->
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
 </head>
@@ -47,7 +66,8 @@
                             <li><a class="nav-link" href="{{ route('products.index') }}">Productos</a></li>
                             <li><a class="nav-link" href="{{ route('category.index') }}">Categoria</a></li>
                             <li><a class="nav-link" href="{{ route('transactions.index') }}">Transacciones</a></li>
-                            <li><a class="nav-link" href="{{ route('not_availables.index') }}">Especificacion</a></li>
+                            <li><a class="nav-link" href="{{ route('notavailables.index') }}">Especificacion</a></li>
+                            <li><a class="nav-link" href="{{ route('details.index') }}">Details</a></li>
                             
                             <li class="nav-item dropdown">
                                 <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
@@ -75,15 +95,11 @@
         </nav>
 
         <!-- Scripts js-->
-        <script src="{{ asset('js/moment.js') }}"></script>
-        <script src="{{ asset('js/moment-with-locales.js') }}"></script>
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-datetimepicker/2.5.20/jquery.datetimepicker.full.js"></script>
-        <script src="{{ asset('js/select2.full.min.js') }}"></script>
+    
         
-
         <main class="py-4">
             <div class="container">
-
+            
 
             @yield('content')
             @yield('js')

@@ -8,7 +8,7 @@ use Illuminate\Http\Request;
 use App\Http\Requests\CreateProductRequest;
 use Illuminate\Support\Facades\Storage;
 
-class ProductController extends Controller
+class ProductControllere extends Controller
 {
     
     function __construct()
@@ -30,11 +30,6 @@ class ProductController extends Controller
         
         return view('products.index',compact('products'));
         
-    }
-    public function buscar(Request $request){
-        $descripcion = Product::where('descripcion','=',$request->texto.'%')->take(10)->get();
-
-        return view('products.index',compact($descripcion));
     }
 
     /**

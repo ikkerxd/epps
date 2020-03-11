@@ -126,6 +126,7 @@ class TransactionController extends Controller
      */
     public function destroy(Transaction $transaction)
     {
+        
         Transaction::where('id','=',$transaction->id)->update(['state'=> '0']);
 
         return redirect()->back()->with('danger','La transaccion con el numero '.$transaction->nro_transaction .' en la fecha '. $transaction->date .' fue Eliminada con exito');

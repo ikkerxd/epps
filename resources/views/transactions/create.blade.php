@@ -28,11 +28,10 @@
 @section('js')
 
     <script>
-    
         $(document).ready(function () {
             $('.datepicker').datetimepicker({
                 locale: 'es',
-                format: 'L'
+                format: 'Y/M/D',
             });
 
             $('.selection-input').select2({

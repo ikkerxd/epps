@@ -41,7 +41,7 @@ class CreateTransactionsTable extends Migration
             $table->foreign('product_id')
                 ->references('id')->on('products')
                 ->onDelete('cascade');
-            $table->bigInteger('count');
+            $table->bigInteger('quantity');
             $table->decimal('price_unit');
             $table->integer('state')->default(1);
             $table->timestamps();

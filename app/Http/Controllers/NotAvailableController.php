@@ -1,12 +1,12 @@
 <?php
 
 namespace App\Http\Controllers;
+use App\Notavailable;
+use App\Transaction;
 
 use Illuminate\Http\Request;
-use App\Transaction;
-use App\Not_available;
 
-class Not_AvailableController extends Controller
+class NotAvailableController extends Controller
 {
     function __construct()
     {
@@ -23,12 +23,12 @@ class Not_AvailableController extends Controller
      */
     public function index()
     {
-        $not_available =Not_available::select('not_availables.id','tr.nro_transaction as nro_transaction','not_availables.name','not_availables.quantity','not_availables.state')
+        $notavailable =Notavailable::select('not_availables.id','tr.nro_transaction as nro_transaction','not_availables.name','not_availables.quantity','not_availables.state')
                             ->join('transactions as tr','not_availables.transaction_id','=','tr.id')
                             ->where('not_availables.state','=',1)
                             ->get();
     
-            return view('not_availables.index',compact('not_available'));
+            return view('notavailables.index',compact('notavailable'));
     }
 
     /**
@@ -39,12 +39,12 @@ class Not_AvailableController extends Controller
     public function create()
     {
         
-        $transactions = Transaction::pluck('nro_transaction','id')
-        ->where('id',$request->transaction_id);
+        $transactions = Transaction::pluck('nro_transaction','id');
+       
         
 
 
-        return view('not_availables.create',compact('transactions'));
+        return view('notavailables.create',compact('transactions'));
     }
 
     /**
@@ -52,7 +52,7 @@ class Not_AvailableController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request,Not_available $not_available)
+    public function store(Request $request,Notavailable $notavailable)
     {
       
         $fields= request()->validate([
@@ -68,9 +68,9 @@ class Not_AvailableController extends Controller
             //poder modificar
             //$fields['state']=2;   
   
-        $not_available::create($fields);
+        $notavailable::create($fields);
  
-        return redirect()->route('not_availables.index')
+        return redirect()->route('notavailables.index')
         ->with('success', 'El producto especifico "'. $request->name .'" con la cantidad '. $request->quantity.' fue registrado correctamente');
 
     }
@@ -81,12 +81,13 @@ class Not_AvailableController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show(Not_available $not_available)
+    public function show(Notavailable $notavailable)
     {
         
         $transactions = Transaction::pluck('nro_transaction','id')
-        ->where('id',$request->transaction_id);
-        return view('transactions.index',compact('not_available','transactions'));
+        ->where('id',$notavailable->transaction_id);
+        
+        return view('notavailables.index',compact('notavailable','transactions'));
     }
 
     /**
@@ -95,12 +96,13 @@ class Not_AvailableController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit(Not_available $not_available)
+    public function edit(Notavailable $notavailable)
     {
         
-        $transactions = Transaction::pluck('nro_transaction','id')
-        ->where('id',$request->transaction_id);
-        return view('transactions.index',compact('not_available','transactions'));
+        
+        $transactions = Transaction::pluck('nro_transaction','id');
+        
+        return view('notavailables.edit',compact('notavailable','transactions'));
     }
 
     /**
@@ -110,18 +112,26 @@ class Not_AvailableController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Not_available $not_available)
+    public function update(Request $request, Notavailable $notavailable)
     {
-        $this->validate($request,[
+        $fields= request()->validate([
             'name' =>'required',
             'quantity'=>'required',
-            
+            'transaction_id' => 'required'
         ],
             [
                 'name.required' =>'El campo name es obligatorio',
-                'quantity.required' =>'El campo quantity es obligatorio'
+                'quantity.required' =>'El campo quantity es obligatorio',
+                'transaction.required' => 'Campo transaccion obligatorio'
             ]);
-        $not_available::update($fields);
+           
+         
+            
+        $notavailable::where('state','=',1)->update($fields);
+
+        
+        return redirect()->route('notavailables.index')
+        ->with('success','El producto: '. $notavailable->name .' con la cantidad '. $notavailable->quantity .' actualizado Correctamente.');
     }
 
     /**
@@ -130,11 +140,13 @@ class Not_AvailableController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Not_available $not_available)
+    public function destroy(Notavailable $notavailable)
     {
-        $transaction=Transaction::all()
-        ->where('id','=',$not_available->transaction_id);
-        Not_available::where('id','=',$not_available->id)->update(['state'=> '0']);
+        
+        $transaction=Transaction::
+        where('id','=',$notavailable->transaction_id)->first();
+        $notavailable::where('id','=',$notavailable->id)->update(['state'=> '0']);
+       
 
         return redirect()->back()->with('danger','El producto solicitado con el numero '.$transaction->nro_transaction .' en la fecha '. $transaction->date .' fue Eliminada con exito');
     }

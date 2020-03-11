@@ -4,8 +4,11 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 
-class Not_available extends Model
+class Notavailable extends Model
 {
+
+    protected $table = 'not_availables';
+
     protected $fillable=[
         'transaction_id','name','quantity','state'
     ];

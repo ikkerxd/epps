@@ -22,13 +22,13 @@
 <div class="col-xs-12 col-sm-6">
   <div class="form-group">
     <label for="text">Fecha Transaccion</label>
-    {!! Form::text('date', null, ['class' => 'form-control datepicker','autocomplete' =>'off','placeholder' => 'Ingresa Fecha']) !!}
+    {!! Form::select('transaction_id',$transaction,null, ['class' => 'form-control','style' => 'width: 100%']) !!}
   </div>
   </div>
 <div class="col-xs-12 col-sm-6">
   <div class="form-group">
     <label for="text">Total</label>
-    {!! Form::number('total', null, ['class' => 'form-control','placeholder' => 'Ingresa Total']) !!}
+    {!! Form::select('product_id',$product,null, ['class' => 'form-control','style' => 'width: 100%']) !!}
   </div>
   </div>
 </div>
@@ -37,25 +37,17 @@
 <div class="col-xs-12 col-sm-6">
   <div class="form-group">
     <label for="text">Nro Transaccion</label>
-    {!! Form::number('nro_transaction', null, ['class' => 'form-control','placeholder' => 'Ingresa nro de Transaccion']) !!}
+    {!! Form::number('quantity', null, ['class' => 'form-control','placeholder' => 'Ingresa cantidad de Transaccion']) !!}
   </div>
   </div>
 <div class="col-xs-12 col-sm-6">
   <div class="form-group">
-    <label for="text">Nro Guia</label>
-    {!! Form::number('nro_guide', null, ['class' => 'form-control','placeholder' => 'Ingresa el numero de Guia']) !!}
+    <label for="text">Precio </label>
+    {!! Form::number('price_unit', null, ['class' => 'form-control','placeholder' => 'Ingresa el precio del producto']) !!}
   </div>
   </div>
 </div>
 
-<div class="row">
-<div class="col-xs-12 col-sm-6">
-  <div class="form-group">
-    <label for="text">Usuario</label>
-    {!! Form::select('users.id',$user,null, ['class' => 'form-control','style' => 'width: 100%']) !!}
-  </div>
-  
-</div>
 
 <div class="form-group">
 <div class="text-center">

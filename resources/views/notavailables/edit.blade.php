@@ -14,7 +14,7 @@
         <div class="box-header with-border">
           <h3 class="box-title">Editar Especificacion Producto</h3>
         </div>
-        {!! Form::model($notavailable, ['route' => ['notavailables.update', $notavailable->id],'method'=>'PUT' ,'id'=>'form_Transaccion' ,'class' => 'form-horizontal']) !!}
+        {!! Form::model($notavailable, ['route' => ['notavailables.update', $notavailable->id],'method'=>'PUT' ,'id'=>'form_NotAvailable' ,'class' => 'form-horizontal']) !!}
         @include('notavailables.partials.form',['Modo'=>'editar'])
         {!! Form::close() !!}
         
