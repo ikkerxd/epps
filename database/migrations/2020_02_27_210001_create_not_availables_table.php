@@ -22,6 +22,8 @@ class CreateNotAvailablesTable extends Migration
                     ->onDelete('cascade');
             $table->string('name');
             $table->bigInteger('quantity')->default(0);
+            $table->string('attachment');
+            $table->text('description');
             $table->integer('state')->default(1);
             $table->timestamps();
         });
