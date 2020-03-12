@@ -22,10 +22,10 @@ class ProductController extends Controller
 
     public function index()
     {
-      $products= Product::select('products.id as id','C.name as nameCategory','products.name as nameProduct','products.descripcion',
-                'products.price','products.unidad_medida','products.marca','products.image','products.stock')
+      $products= Product::select('products.id as id','C.name as nameCategory','products.name as nameProduct','products.description',
+                'products.price','products.metric','products.brand','products.image','products.stock')
         ->join('category as C','products.category_id','=','C.id')
-        ->where('products.state','=',1)
+        //->where('products.state','=',1)
         ->get();
         
         return view('products.index',compact('products'));

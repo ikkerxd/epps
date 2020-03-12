@@ -58,16 +58,16 @@
             
             <th width="280px">Action</th>
         </tr>
-        @if (count($descripcion))
+        {{-- @if (count($description)) --}}
 	    @foreach ($products as $product)
 	    <tr>
 	        <td>{{$loop->iteration}}</td>
 	        <td>{{ $product->nameCategory }}</td>
 	        <td>{{ $product->nameProduct }}</td>
-            <td>{{ $product->descripcion }}</td>
+            <td>{{ $product->description }}</td>
             <td>{{ $product->price }}</td>
             <td>{{$product->stock}}</td>
-            <td>{{ $product->unidad_medida }}</td>   
+            <td>{{ $product->metric }}</td>   
             <td>
             <p class="p-2 border-bottom">{{$product->id .' - '. $product->categoria}}</p>
              </td>       
@@ -94,7 +94,7 @@
 	    </tr>
         
 	    @endforeach
-        @endif
+        {{-- @endif --}}
     </table>
 <script>
 window.addEventListener("load",function(){
