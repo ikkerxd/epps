@@ -17,7 +17,7 @@ class UserTableSeeder extends Seeder
             'ruc'=>'1',
             'address'=>'Tijuana',
             'email'=>'root@ighgroup.com',
-            'telefono'=> '922570393',
+            'phone'=> '922570393',
             'password'=> bcrypt('root'),
             'state'=>0,
             

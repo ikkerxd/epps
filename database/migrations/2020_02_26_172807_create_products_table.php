@@ -21,15 +21,15 @@ class CreateProductsTable extends Migration
                 ->references('id')->on('category')
                 ->onDelete('cascade');
             $table->string('name');
-            $table->string('descripcion');
+            $table->text('description');
             //contenido es una descripcion mas especifica del producto
-            $table->string('contenido');
+            $table->text('content');
             $table->string('image')->nullable();
             $table->decimal('price');
-            $table->string('unidad_medida');
-            $table->string('marca')->nullable();
+            $table->string('metric');
+            $table->string('brand')->nullable();
             $table->string('color');
-            $table->string('ficha_tecnica');
+            $table->text('datasheet');
             $table->integer('stock')->nullable();
             $table->integer('stock_min')->default(0);
             $table->integer('state')->default(1);

@@ -15,7 +15,7 @@ class Product extends Model
         return $this->belongsTo(Category::class);
     }
     protected $fillable = [
-        'name','category_id','descripcion','contenido','unidad_medida','marca','color','ficha_tecnica','price','image','store',
+        'category_id','name','descripcion','content','image','price','metric','brand','color','datasheet','stock','sotck_min','state',       
     ];
 
     public function users()

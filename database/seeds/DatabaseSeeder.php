@@ -17,23 +17,17 @@ class DatabaseSeeder extends Seeder
             'products',
             'transactions',
             'not_availables',
-            'details',
-            
-        
+            'details',        
         ]);
 
         $this->call(RoleTableSeeder::class);
         $this->call(UserTableSeeder::class);
         $this->call(PermissionTableSeeder::class);
         $this->call(CategoryTableSeeder::class);
-        $this->call(ProductsTableSeeder::class);
-        
-        
-
+        $this->call(ProductsTableSeeder::class);         
     }
 
     protected function truncateTables(array $tables)
-
     {
         DB::statement('SET FOREIGN_KEY_CHECKS = 0;');
         foreach($tables as $table){
