@@ -34,7 +34,7 @@
         </div>
      </div>
      <br>
-
+    
 <!-- <div class="col-8">
         <div class="input-group">
             <input type="text" class="form-control" id="texto" placeholder="Ingrese nombre">
@@ -111,7 +111,7 @@ window.addEventListener("load",function(){
     })
     
 })
-</script>
+</script>   
 
 <p class="text-center text-primary"><small>EPPS</small></p>
 @endsection

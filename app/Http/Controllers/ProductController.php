@@ -26,15 +26,32 @@ class ProductController extends Controller
                 'products.price','products.metric','products.brand','products.image','products.stock')
         ->join('category as C','products.category_id','=','C.id')
         //->where('products.state','=',1)
-        ->get();
+        ->paginate(50);
         
         return view('products.index',compact('products'));
         
     }
+     public function paginacion()
+    {
+      $descripcion= Product::select('products.id as id','C.name as nameCategory','products.name as nameProduct','products.description',
+                'products.price','products.metric','products.brand','products.image','products.stock')
+        ->join('category as C','products.category_id','=','C.id')
+        //->where('products.state','=',1)
+        ->paginate(50);
+        
+        return view('products.paginas',compact('descripcion'));
+        
+    }
     public function buscar(Request $request){
-        $descripcion = Product::where('descripcion','=',$request->texto.'%')->take(10)->get();
-
-        return view('products.index',compact($descripcion));
+        if($request->texto==""){
+            
+            $descripcion = Product::where('name','=',$request->texto.'%')->take(10)->get();
+            return view('products.paginas',compact('descripcion'));
+        }
+        else
+        $descripcion = Product::where('name','like',$request->texto.'%')->take(10)->get();
+        
+        return view('products.paginas',compact('descripcion'));
     }
 
     /**

@@ -23,12 +23,16 @@
                     <img src="{{asset('images/logo.png')}}" width="60"  alt="">
                   </a>
             </div>
-            <div class="input-group input-group-lg">               
-                <input type="text" class="form-control" placeholder="Buscar producto" aria-describedby="basic-addon1">
-                <div class="input-group-append">
-                    <button class="btn btn-info btn-lg" type="button"><i class="fas fa-search"></i></button>
-                  </div>
-              </div>
+            <!--
+            <div class="col-md-8 text-center">
+        <div class="input-group">
+            <input type="text" class="form-control" id="texto" placeholder="Buscar producto ...">
+        </div>
+        <div id="resultados" class="bg-light border">
+        
+        </div>
+        </div>-->
+
             <div class="col-md-2">
                 <ul class="navbar-nav float-right">
                     <!-- Authentication Links -->
@@ -69,4 +73,5 @@
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
     <script src="https://kit.fontawesome.com/6fd4ed856d.js" crossorigin="anonymous"></script>
 </body>
+
 </html>

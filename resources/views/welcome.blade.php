@@ -1,13 +1,22 @@
 @extends('layouts.front')
 
 @section('content')
-<div class="row justify-content-md-center">                 
-    {{-- <div class="col-md-8 text-center">
-        <div class="form-group">
-            <input type="text" class="form-control" placeholder="Buscar producto ...">
-        </div>
-    </div> --}}
 
+
+
+
+      <div class="col-md-12">                
+        <div class="input-group input-group-lg">               
+                <input type="text" class="form-control" id="texto" placeholder="Buscar producto" aria-describedby="basic-addon1">
+                <div class="input-group-append">
+                    <button class="btn btn-info btn-lg" type="button"><i class="fas fa-search"></i></button>
+                </div>
+                </div>
+                <div id="resultados" class="bg-light border">
+        </div>  
+        <br>        
+       
+          
     <div class="col-md-12">
         <div class="form-group">
             <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
@@ -81,4 +90,21 @@
         
     </div> 
 </div>
+<script>
+window.addEventListener("load",function(){
+    document.getElementById("texto").addEventListener("keyup",function(){
+        
+        
+        fetch(`/products/buscador?texto=${document.getElementById("texto").value}`,{ 
+            method:'get' 
+        })
+                .then(response  =>  response.text() )
+                .then(html      =>  {   
+                    document.getElementById("resultados").innerHTML = html  
+        })
+           
+    })
+    
+})
+</script>   
 @endsection
