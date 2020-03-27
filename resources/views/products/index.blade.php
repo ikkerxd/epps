@@ -21,19 +21,7 @@
             </div>
         @endif
 
-        <br>
-     <div class="col-8">
-     <br>
-      <div class="input-group" style="position:absolute; left:237px">  
-            <input type="text" class="form-control" id="texto" placeholder="Ingrese una descripcion">
-            <div class="input-group-append">
-                <span class="input-group-text">Buscar</span>
-            </div>
-        </div>
-        <div id="resultados" class="bg-light border">
-        </div>
-     </div>
-     <br>
+        
     
 <!-- <div class="col-8">
         <div class="input-group">
@@ -96,22 +84,7 @@
 	    @endforeach
         {{-- @endif --}}
     </table>
-<script>
-window.addEventListener("load",function(){
-    document.getElementById("texto").addEventListener("keyup",function(){
-      
-        fetch(`/products/buscar?texto=${document.getElementById("texto").value}`,{ 
-            method:'get' 
-        })
-                .then(response  =>  response.text() )
-                .then(html      =>  {   
-                    document.getElementById("resultados").innerHTML = html  
-        })
-           
-    })
-    
-})
-</script>   
+  
 
 <p class="text-center text-primary"><small>EPPS</small></p>
 @endsection
