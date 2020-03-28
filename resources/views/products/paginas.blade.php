@@ -2,6 +2,6 @@
 
 @if(count($descripcion))
   @foreach($descripcion as $product)
-    <p class="p-2 border-bottom"  >{{$product->id .' - '. $product->name}} </p> 
+    <li class="p-2 border-bottom"  ><a href="{{ route('products.show',$product->id) }}">{{$product->id .' - '. $product->name}} </a></li> 
   @endforeach
 @endif
