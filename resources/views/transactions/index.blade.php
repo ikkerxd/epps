@@ -4,13 +4,9 @@
     <div class="row">
         <div class="col-lg-12 margin-tb">
             <div class="pull-left">
-                <h2>Transacciones</h2>
+                <h2>Productos Solicitados</h2>
             </div>
-            <div class="pull-right">
-                @can('transaction-create')
-                <a class="btn btn-success" href="{{ route('transactions.create') }}"> Create New Transaccion</a>
-                @endcan
-            </div>
+            
         </div>
     </div>
 
@@ -20,53 +16,53 @@
                 <p>{{ $message }}</p>
             </div>
         @endif
-        @if ($message = Session::get('danger'))
-        <div class="alert alert-danger" role="alert">
-        <p>{{ $message }}</p>
-        </div>
-        @endif
-     
-     
 
+        
+    
+<!-- <div class="col-8">
+        <div class="input-group">
+            <input type="text" class="form-control" id="texto" placeholder="Ingrese nombre">
+            <div class="input-group-append"><span class="input-group-text">Buscar</span></div>
+        </div>
+        <div id="resultados" class="bg-light border"></div>
+    </div>-->
+     
     <table class="table table-bordered">
         <tr>
             <th>#</th>
-            <th>Nro Transaccion</th>
-            <th>Nro Guia</th>
+            <th>Nombre Usuario</th>
+            <th>Producto</th>
+            <th>Categoria</th>
+            <th>Imagen</th>
             <th>Fecha</th>
-            <th>Total</th>
-            <th>Usuario</th>
-            <th width="280px">Action</th>
+            <th>Proceso</th>
             
+            
+            <th width="280px">Action</th>
         </tr>
-	    @foreach ($transaction as $transaction)
+       
+	    @foreach ($transactions as $transaction)
 	    <tr>
 	        <td>{{$loop->iteration}}</td>
-	        <td>{{ $transaction->nro_transaction }}</td>
-	        <td>{{ $transaction->nro_guide }}</td>
-            <td>{{ $transaction->date }}</td>
-            <td>{{ $transaction->total }}</td>
-            <td>{{$user->name}}</td>
+	        <td>{{ $transaction->nameuser }}</td>
+	        <td>{{ $transaction->productname }}</td>
+            <td>{{ $transaction->namecategory }}</td>
             
+           
+            <td>
+            <img  style= "width:200px;  background-color: #EFEFEF;" class="rounded-circle" src="{{asset('images').'/'.$transaction->image}}" alt="">
+            </td>
+            <td>{{$transaction->date}}</td>
+            <td>{{ $transaction->proccess }}</td>   
 	        <td>
-                <form action="{{ route('transactions.destroy',$transaction->id) }}" method="POST">
-                    <a class="btn btn-info" href="{{ route('transactions.show',$transaction->id) }}">Show</a>
-                    @can('transaction-edit')
-                    <a class="btn btn-primary" href="{{ route('transactions.edit',$transaction->id) }}">Edit</a>
-                    @endcan
-
-
-                    @csrf
-                    @method('DELETE')
-                    @can('transaction-delete')
-                    <button type="submit" class="btn btn-danger">Delete</button>
-                    @endcan
-                </form>
+               
 	        </td>
 	    </tr>
+        
 	    @endforeach
+        
     </table>
-
+  
 
 <p class="text-center text-primary"><small>EPPS</small></p>
 @endsection

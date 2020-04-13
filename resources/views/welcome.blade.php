@@ -4,7 +4,6 @@
 
 
 
-
       <div class="col-md-12">                
         <div class="input-group input-group-lg">               
                 <input type="text" class="form-control" id="texto" placeholder="Buscar producto" aria-describedby="basic-addon1">
@@ -14,8 +13,18 @@
                 </div>
                 <div id="resultados" class="bg-light border">
         </div>  
-        <br>        
-       
+        <br> 
+ 
+        @if ($message = Session::get('success'))
+            <div class="alert alert-success">
+                <p>{{ $message }}</p>
+            </div>
+        @endif
+        @if ($message = Session::get('danger'))
+        <div class="alert alert-danger" role="alert">
+        <p>{{ $message }}</p>
+        </div>
+        @endif
           
     <div class="col-md-12">
         <div class="form-group">
@@ -90,6 +99,7 @@
         
     </div> 
 </div>
+
 <script>
 window.addEventListener("load",function(){
     document.getElementById("texto").addEventListener("keyup",function(){

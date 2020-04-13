@@ -20,8 +20,8 @@ class CreateTransactionsTable extends Migration
                 ->references('id')->on('users')
                 ->onDelete('cascade');
             $table->string('type')->nullable();
-            $table->bigInteger('nro_transaction');
-            $table->bigInteger('nro_guide');
+            $table->bigInteger('nro_transaction')->nullable();
+            $table->bigInteger('nro_guide')->nullable();
             $table->date('date');
             //cantidad comprada o vendida
             $table->bigInteger('total');

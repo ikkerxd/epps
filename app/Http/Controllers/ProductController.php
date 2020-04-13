@@ -33,7 +33,7 @@ class ProductController extends Controller
     }
      public function paginacion()
     {
-      $descripcion= Product::select('products.id as id','C.name as nameCategory','products.name as nameProduct','products.description',
+      $descripcion= Product::select('products.id as id','C.name as nameCategory','products.name as nameProduct','products.description as description',
                 'products.price','products.metric','products.brand','products.image','products.stock')
         ->join('category as C','products.category_id','=','C.id')
         //->where('products.state','=',1)
@@ -45,11 +45,11 @@ class ProductController extends Controller
     public function buscar(Request $request){
         if($request->texto==""){
             
-            $descripcion = Product::where('name','=',$request->texto.'%')->take(10)->get();
+            $descripcion = Product::where('description','=',$request->texto.'%')->take(10)->get();
             return view('products.paginas',compact('descripcion'));
         }
         else
-        $descripcion = Product::where('name','like',$request->texto.'%')->take(10)->get();
+        $descripcion = Product::where('description','like',$request->texto.'%')->take(10)->get();
         
         return view('products.paginas',compact('descripcion'));
     }
@@ -107,7 +107,7 @@ class ProductController extends Controller
        /* $category = DB::table('category')
         ->where('id',$product->category_id)
         ->first();*/
-
+        
         $category=Category::select('category.name','category.id')
         ->where('category.id',$product->category_id)->first();
         
@@ -163,7 +163,7 @@ class ProductController extends Controller
             $fields['image'] = $product->image;
         }
         
-
+        
         $product->update($fields);
         return redirect()->route('products.index')
                         ->with('success','Producto actualizado Correctamente.');

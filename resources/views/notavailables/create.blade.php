@@ -13,7 +13,7 @@
         <div class="col-md-9">
           <div class="box box-info">
             <div class="box-header with-border">
-              <h3 class="box-title">Registrar Especificacion de Producto</h3>
+              <h3 class="box-title">Productos no Encontrados</h3>
             </div>
             
 

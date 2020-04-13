@@ -3,9 +3,9 @@
 namespace App\Http\Controllers;
 use App\Notavailable;
 use App\Transaction;
-
+use App\User;
 use Illuminate\Http\Request;
-
+use Illuminate\Support\Facades\Auth;
 class NotAvailableController extends Controller
 {
     function __construct()
@@ -40,9 +40,6 @@ class NotAvailableController extends Controller
     {
         
         $transactions = Transaction::pluck('nro_transaction','id');
-       
-        
-
 
         return view('notavailables.create',compact('transactions'));
     }
@@ -55,23 +52,33 @@ class NotAvailableController extends Controller
     public function store(Request $request,Notavailable $notavailable)
     {
       
+        $user=Auth::user();
         $fields= request()->validate([
             'name' =>'required',
-            'transaction_id' =>'required',
-            'quantity'=>'required',
+            'description' =>'required',
+            'image'=>'required',
+            'quantity'=>'required'
         ],
             [
                 'name.required' =>'El campo name es obligatorio',
-                'transaction_id.required' =>'el campo transaccion es requerido',
-                'quantity.required' =>'El campo quantity es obligatorio'
+                'description.required' =>'el campo descripcion es requerido',
+                'image.required' =>'El campo Image es obligatorio',
+                'quantity.required' =>'El campo Cantidad es obligatorio'
             ]);
             //poder modificar
             //$fields['state']=2;   
-  
-        $notavailable::create($fields);
+            
+           
+        $notavailable->name=$fields['name'];
+        $notavailable->description=$fields['description'];
+        $notavailable->image=$fields['image'];
+        $notavailable->quantity=$fields['quantity'];
+        $notavailable->user_id=$user->id;
+        $notavailable->save();
+
  
-        return redirect()->route('notavailables.index')
-        ->with('success', 'El producto especifico "'. $request->name .'" con la cantidad '. $request->quantity.' fue registrado correctamente');
+        return redirect()->route('products.welcome')
+        ->with('success', 'El producto especifico "'. $request->name .'"fue Solicitado correctamente');
 
     }
 

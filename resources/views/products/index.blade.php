@@ -37,7 +37,7 @@
             <th>Categoria</th>
             <th>Name</th>
             <th>Descripcion</th>
-            <th>price</th>
+            <th>Price</th>
             <th>Stock</th>
             <th>Unidad Medida</th>
             <th>Imagen</th>

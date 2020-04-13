@@ -17,6 +17,9 @@
   
 
     <!-- JS -->
+    <script type="text/javascript" src="{{ asset('js/jquery-3.2.1.slim.min.js')}}"></script>
+    <script type="text/javascript" src="{{ asset('js/popper.min.js')}}"></script>
+    <script type="text/javascript" src="{{ asset('js/bootstrap.min.js')}}"></script>
     <script src="{{ asset('js/jquery.min.js') }}"></script>
     <script src="{{ asset('js/jquery.slimscroll.min.js') }}"></script>
     <script src="{{ asset('js/bootstrap.min.js') }}"></script>
@@ -58,16 +61,18 @@
                     <ul class="navbar-nav ml-auto">
                         <!-- Authentication Links -->
                         @guest
+                            
                             <li><a class="nav-link" href="{{ route('login') }}">{{ __('Login') }}</a></li>
                             <li><a class="nav-link" href="{{ route('register') }}">{{ __('Register') }}</a></li>
                         @else
                             <li><a class="nav-link" href="{{ route('roles.index') }}">Administra Roles</a></li>
                             <li><a class="nav-link" href="{{ route('users.index') }}">Administra User</a></li>
                             <li><a class="nav-link" href="{{ route('products.index') }}">Productos</a></li>
+                            <li><a class="nav-link" href="{{ route('transactions.list')}}">Productos Solicitados</a></li>
                             <li><a class="nav-link" href="{{ route('category.index') }}">Categoria</a></li>
-                            <li><a class="nav-link" href="{{ route('transactions.index') }}">Transacciones</a></li>
-                            <li><a class="nav-link" href="{{ route('notavailables.index') }}">Especificacion</a></li>
+                            <li><a class="nav-link" href="{{ route('notavailables.index') }}">No Disponibles</a></li>
                             <li><a class="nav-link" href="{{ route('details.index') }}">Details</a></li>
+                            
                             
                             <li class="nav-item dropdown">
                                 <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
@@ -100,11 +105,8 @@
         <main class="py-4">
             <div class="container">
             
-
             @yield('content')
             @yield('js')
-            
-            
             
             </div>
         </main>

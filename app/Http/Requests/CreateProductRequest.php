@@ -27,12 +27,12 @@ class CreateProductRequest extends FormRequest
         return [
             'name' => 'required',
             'category_id'=>'required',
-            'descripcion' =>'required',
-            'contenido'=>'required',
-            'unidad_medida'=>'required',
-            'marca'=>'required',
+            'description' =>'required',
+            'content'=>'required',
+            'metric'=>'required',
+            'brand'=>'required',
             'color'=>'required',
-            'ficha_tecnica'=>'required',
+            'datasheet'=>'required',
             'price'=>'required',
             'image'=>'present',
             //'image'=>'file|image|max:5000',
@@ -43,14 +43,14 @@ class CreateProductRequest extends FormRequest
         
         return [
             'name.required' => 'El nombre es requerido',
-            'descripcion.required' =>'El producto necesita una descripción',
-            'ficha_tecnica.required' =>'Ficha Tecnica necesaria',
+            'description.required' =>'El producto necesita una descripción',
+            'datasheet.required' =>'Ficha Tecnica necesaria',
             'color.required'=>'El color es requerido',
-            'contenido.required'=>'El contenido es requerido',
+            'content.required'=>'El contenido es requerido',
             'price.required'=>'Ingrese un precio',
             'category_id.required'=>'ingrese una categoria',
-            'unidad_medida.required'=>'Es necesario una unidad_medida',
-            'marca.required' =>'Es necesario la marca',
+            'metric.required'=>'Es necesario una unidad_medida',
+            'brand.required' =>'Es necesario la marca',
         ];
     }
     

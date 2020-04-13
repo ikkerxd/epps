@@ -1,4 +1,6 @@
+@extends('layouts.app')
 
+@section('content')
 
 <div class="box-body">
 
@@ -21,13 +23,13 @@
 <div class="row">
 <div class="col-xs-12 col-sm-6">
   <div class="form-group">
-    <label for="text">Fecha Transaccion</label>
+    <label for="text">Transaccion</label>
     {!! Form::select('transaction_id',$transaction,null, ['class' => 'form-control','style' => 'width: 100%']) !!}
   </div>
   </div>
 <div class="col-xs-12 col-sm-6">
   <div class="form-group">
-    <label for="text">Total</label>
+    <label for="text">Producto</label>
     {!! Form::select('product_id',$product,null, ['class' => 'form-control','style' => 'width: 100%']) !!}
   </div>
   </div>
@@ -55,3 +57,4 @@
 </div>
 </div>
 </div>
+@stop

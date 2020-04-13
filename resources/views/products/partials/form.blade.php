@@ -38,13 +38,13 @@
 <div class="col-xs-12 col-sm-6">
   <div class="form-group">
     <label for="text">Descripcion</label>
-    {!! Form::textarea('descripcion', null, ['class' => 'form-control','id' => 'descripcion', 'rows' => 4, 'cols' => 54, 'style' => 'resize:none','placeholder'=>'Ingrese Descripcion']) !!}
+    {!! Form::textarea('description', null, ['class' => 'form-control','id' => 'descripcion', 'rows' => 4, 'cols' => 54, 'style' => 'resize:none','placeholder'=>'Ingrese Descripcion']) !!}
   </div>
   </div>
   <div class="col-xs-12 col-sm-6">
   <div class="form-group">
     <label for="text">Contenido</label>
-    {!! Form::textarea('contenido', null, ['class' => 'form-control','id' => 'descripcion', 'rows' => 4, 'cols' => 54, 'style' => 'resize:none','placeholder'=>'Ingrese Descripcion']) !!}
+    {!! Form::textarea('content', null, ['class' => 'form-control','id' => 'descripcion', 'rows' => 4, 'cols' => 54, 'style' => 'resize:none','placeholder'=>'Ingrese Descripcion']) !!}
   </div>
   </div>
 </div>
@@ -53,13 +53,13 @@
 <div class="col-xs-12 col-sm-6">
   <div class="form-group">
     <label for="text">Unidad de Medida</label>
-    {!! Form::text('unidad_medida', null, ['class' => 'form-control','placeholder' => 'Ingresa Medida']) !!}
+    {!! Form::text('metric', null, ['class' => 'form-control','placeholder' => 'Ingresa Medida']) !!}
   </div>
   </div>
 <div class="col-xs-12 col-sm-6">
   <div class="form-group">
     <label for="text">Marca</label>
-    {!! Form::text('marca', null, ['class' => 'form-control','placeholder' => 'Ingresa Marca']) !!}
+    {!! Form::text('brand', null, ['class' => 'form-control','placeholder' => 'Ingresa Marca']) !!}
   </div>
   </div>
 
@@ -74,7 +74,7 @@
 <div class="col-xs-12 col-sm-6">
   <div class="form-group">
     <label for="text">Ficha Tecnica</label>
-    {!! Form::text('ficha_tecnica', null, ['class' => 'form-control','placeholder' => 'Ingresa Ficha Tecnica']) !!}
+    {!! Form::text('datasheet', null, ['class' => 'form-control','placeholder' => 'Ingresa Ficha Tecnica']) !!}
   </div>
   </div>
 

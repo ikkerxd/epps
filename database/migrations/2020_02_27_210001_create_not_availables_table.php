@@ -16,14 +16,15 @@ class CreateNotAvailablesTable extends Migration
         //creacion de la tabla no disponible
         Schema::create('not_availables', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->unsignedBigInteger('transaction_id');
-            $table->foreign('transaction_id')
-                    ->references('id')->on('transactions')
+            $table->unsignedBigInteger('user_id');
+            $table->foreign('user_id')
+                    ->references('id')->on('users')
                     ->onDelete('cascade');
             $table->string('name');
             $table->bigInteger('quantity')->default(0);
-            $table->string('attachment');
+            $table->string('attachment')->nullable();
             $table->text('description');
+            $table->string('image')->nullable();
             $table->integer('state')->default(1);
             $table->timestamps();
         });

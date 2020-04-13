@@ -25,11 +25,9 @@ class CreateTransactionRequest extends FormRequest
     {
         return [
             
-            'nro_transaction' => 'required|numeric',
-            'nro_guide' => 'required|numeric',
-            'date' => 'required|date',
-            'total' => 'required',
-            'process' =>'nullable'    
+            'quantity' => 'required|numeric',
+            'productid' => 'required|numeric',
+            'price' => 'required|numeric',
             
             
         ];
@@ -38,13 +36,12 @@ class CreateTransactionRequest extends FormRequest
 
         return[
             
-            'nro_transaction.required' =>'El nro de transaccion es requerido',
-            'nro_transaction.numeric' =>'El nro de transaccion debe ser numerico',
-            'nro_guide.required' =>'El nro de guia es requerido',
-            'nro_guide.numeric' =>'El nro de guia debe ser numerico',
-            'date.required' =>'Es necesario la fecha',
-            'date.date'=>'Introdusca el formato de fecha',
-            'total.required'=>'El total es requerido',
+            'quantity.required' =>'La cantidad es requerida',
+            'quantity.numeric' =>'La cantidad  debe ser numerico',
+            'productid.required' =>'El producto debe ser seleccionado',
+            'productid.numeric' =>'El producto debe ser numerico',
+            
+            
             
             
         ];
