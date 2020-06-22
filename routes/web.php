@@ -32,6 +32,7 @@ Route::group(['middleware' => ['auth']], function() {
     //rutas transacciones
     Route::get('transactions','TransactionController@list')->name('transactions.list');
     Route::get('transactions/{product}','TransactionController@index')->name('transactions.index');
+    Route::get('transaction/{product}','TransactionController@index2')->name('transactions.index2');
     Route::get('transactions/{product}/create','TransactionController@create')->name('transactions.create');
     Route::post('transactions','TransactionController@store')->name('transactions.store');
     Route::put('transactions/{product}','TransactionController@update')->name('transactions.update');
@@ -42,6 +43,7 @@ Route::group(['middleware' => ['auth']], function() {
     Route::get('products','ProductController@index')->name('products.index');
     Route::get('products/paginacion','ProductController@paginacion')->name('products.paginacion');
     Route::get('products/buscador','ProductController@buscar')->name('products.buscar');
+    Route::get('products/buscador2','ProductController@buscar2')->name('products.buscar2');
     Route::get('products/create','ProductController@create')->name('products.create');
     Route::post('products','ProductController@store')->name('products.store');
     Route::get('products/{product}','ProductController@show')->name('products.show');

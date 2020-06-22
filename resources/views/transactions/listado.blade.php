@@ -4,7 +4,8 @@
     <div class="row">
         <div class="col-lg-12 margin-tb">
             <div class="pull-left">
-                <h2> <strong>Resultados de Busqueda</strong></h2>
+            <h2><font color="black" size="6" face="verdana">Resultados de Busqueda</font></h2>
+            
             </div>
             <br>
             
@@ -54,10 +55,14 @@
 	        <td >
                    
                     @can('product-create')
-                    <a class="btn btn-primary text:center "  style="position:absolute;left:1190px" href="{{ route('transactions.create',$product->id) }}">Cotizar</a>
+                    <a class="btn btn-primary text:center "  style="position:absolute;left:1190px" href="{{ route('transactions.create',$product->id) }}">Ver Producto</a>
                     @endcan
+                    <br>
+                    <br>
+                    <br>
                     @can('product-create')
-                    <li class="p-2 border-bottom" style="position:absolute;top:90px;left:1190px"><a href="{{route('notavailables.create')}}">Producto no encontrado?</a></li> 
+                    <a class="btn btn-link text:center "  style="position:absolute;left:1150px" href="{{route('notavailables.create')}}">Producto no encontrado?</a>
+                   
                     @endcan
 	        </td>
             

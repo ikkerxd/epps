@@ -14,7 +14,7 @@
         <div class="box-header with-border">
           <h3 class="box-title">Editar Producto</h3>
         </div>
-        {!! Form::model($product, ['route' => ['products.update', $product->id],'method'=>'PUT','files'=>true ,'id'=>'form_Producto' ,'class' => 'form-horizontal']) !!}
+        {!! Form::model($product, ['route' => ['products.update', $product->id],'method'=>'PUT','id'=>'form_Producto' ,'class' => 'form-horizontal']) !!}
         @include('products.partials.form',['Modo'=>'editar'])
         {!! Form::close() !!}
         

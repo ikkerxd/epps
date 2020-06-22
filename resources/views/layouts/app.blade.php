@@ -41,39 +41,39 @@
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
 </head>
 <body>
-    <div id="app">
-        <nav class="navbar navbar-expand-md navbar-light navbar-laravel">
-            <div class="container">
-                <a class="navbar-brand" href="{{ url('/') }}">
-                    EPPS
-                </a>
-                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-                    <span class="navbar-toggler-icon"></span>
-                </button>
+<div id="app">
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarTogglerDemo01" aria-controls="navbarTogglerDemo01" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+  <div class="collapse navbar-collapse" id="navbarTogglerDemo01">
 
-
-                <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                    <!-- Left Side Of Navbar -->
-                    <ul class="navbar-nav mr-auto"></ul>
-
-
-                    <!-- Right Side Of Navbar -->
-                    <ul class="navbar-nav ml-auto">
-                        <!-- Authentication Links -->
+                        <a class="navbar-brand">
+                        <img  style= "width:5x;  background-color: #EFEFEF;" class="rounded-circle" src="{{asset('images').'/'.'hombre.png'}}" alt="">
+                        </a>
+                        <a class="navbar-brand" href="{{route('products.welcome')}}">Inicio</a>
+                        <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
+                       
+                           
                         @guest
-                            
-                            <li><a class="nav-link" href="{{ route('login') }}">{{ __('Login') }}</a></li>
-                            <li><a class="nav-link" href="{{ route('register') }}">{{ __('Register') }}</a></li>
+                        <li class="nav-item active">
+                        <a class="nav-link" href="{{ route('login') }}">{{ __('Login') }}</a>
+                       
+                       
+                        </li>
+                        <li class="nav-item active">
+                        <a class="nav-link" href="{{ route('register') }}">{{ __('Register') }}</a>
+                    
+                        </li>
                         @else
-                            <li><a class="nav-link" href="{{ route('roles.index') }}">Administra Roles</a></li>
-                            <li><a class="nav-link" href="{{ route('users.index') }}">Administra User</a></li>
-                            <li><a class="nav-link" href="{{ route('products.index') }}">Productos</a></li>
-                            <li><a class="nav-link" href="{{ route('transactions.list')}}">Productos Solicitados</a></li>
-                            <li><a class="nav-link" href="{{ route('category.index') }}">Categoria</a></li>
-                            <li><a class="nav-link" href="{{ route('notavailables.index') }}">No Disponibles</a></li>
-                            <li><a class="nav-link" href="{{ route('details.index') }}">Details</a></li>
-                            
-                            
+                        <li class="nav-item active">
+                        <a class="nav-link" href="{{ route('users.index') }}">Productos</a>
+                        </li>
+                        <li class="nav-item active">
+                        <a class="nav-link" href="{{ route('transactions.list')}}">Productos Solicitados</a>
+                        </li>
+                        <li class="nav-item active">
+                            <!-------necesario -->
                             <li class="nav-item dropdown">
                                 <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
                                     {{ Auth::user()->name }} <span class="caret"></span>
@@ -93,14 +93,38 @@
                                     </form>
                                 </div>
                             </li>
+                            </li>
+                        </li>
                         @endguest
-                    </ul>
-                </div>
-            </div>
-        </nav>
-
+                        </ul>
+                        <form class="form-inline my-2 my-lg-0">
+                        <input class="form-control mr-sm-2" type="search" id="texto" placeholder="Nombre Producto" aria-label="Search">
+                        <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Buscar</button>
+                        <div id="resultados" class="bg-light border">
+                        </div>  
+                        </form>
+                    </div>
+                    </nav>
+            
+</div>
         <!-- Scripts js-->
-    
+        <script>
+        window.addEventListener("load",function(){
+            document.getElementById("texto").addEventListener("keyup",function(){
+                
+                
+                fetch(`/products/buscador2?texto=${document.getElementById("texto").value}`,{ 
+                    method:'get' 
+                })
+                        .then(response  =>  response.text() )
+                        .then(html      =>  {   
+                            document.getElementById("resultados").innerHTML = html  
+                })
+                
+            })
+            
+        })
+        </script>   
         
         <main class="py-4">
             <div class="container">

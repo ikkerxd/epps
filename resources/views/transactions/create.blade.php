@@ -13,8 +13,9 @@
         <div class="col-md-9" >
           <div class="box box-info"  >
             <div class="box-header with-border" style='text-align:right'>
-            <h3 class="box-title"> <strong> Productos no Encontrados</strong></h3>
+            <h1 class="box-title" align="center"> <strong> Productos no Encontrados</strong></h1>
             </div>
+            <br>
             <br>
             
             @if ($message = Session::get('success'))

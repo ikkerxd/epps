@@ -52,6 +52,19 @@ class ProductController extends Controller
         $descripcion = Product::where('description','like',$request->texto.'%')->take(10)->get();
         
         return view('products.paginas',compact('descripcion'));
+        
+    }
+    public function buscar2(Request $request){
+        if($request->texto==""){
+            
+            $nombres = Product::where('name','=',$request->texto.'%')->take(3)->get();
+            return view('products.paginas',compact('nombres'));
+        }
+        else
+        $nombres = Product::where('name','like',$request->texto.'%')->take(3)->get();
+        
+        return view('products.paginas',compact('nombres'));
+        
     }
 
     /**

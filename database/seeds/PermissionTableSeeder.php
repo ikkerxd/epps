@@ -90,6 +90,7 @@ class PermissionTableSeeder extends Seeder
         DB::table('permissions')->insert([
             'name'=>'details-delete',
         ]);
+        
         //dando un rool root a un usuario con id:1
         DB::table('model_has_roles')->insert([
 

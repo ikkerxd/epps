@@ -39,6 +39,20 @@ class TransactionController extends Controller
     
         
     }
+    public function index2($name)
+    {
+        
+        $products= Product::select('products.id as id','C.name as nameCategory','products.name as nameProduct','products.description',
+        'products.price','products.metric','products.brand','products.image','products.stock')
+            ->join('category as C','products.category_id','=','C.id')
+            ->where('products.name','=',$name)
+            //->where('products.state','=',1)
+            ->paginate(20);
+        
+        return view('transactions.listado',compact('products'));
+    
+        
+    }
     public function list(){
         $transactions=Transaction::select('transactions.id as id','us.name as nameuser','product.name as productname','cat.name as namecategory','product.image as image','transactions.date as date','transactions.process as proccess')
         ->join('details as detail','detail.transaction_id','transactions.id')
@@ -74,17 +88,9 @@ class TransactionController extends Controller
         return view('transactions.quote',compact('transactions','transaction','notavailables'));
         
     }
-    public function create($id)
+    public function storequote(CreateTransactionRequest $request, Transaction $transaction)
     {
-        $users =Auth::user();
-        $user=User::select('users.id')
-        ->where('users.id','=',$users->id)
-        ->first();
-        $product=Product::select('products.description','cat.name as namecategory','products.image','products.name as nameproduct','products.id as productid','products.price')
-        ->join('category as cat','cat.id','products.category_id')
-        ->where('products.id','=',$id)
-        ->first();
-        return view('transactions.create',compact('user','product'));
+        
         
     }
     /**
